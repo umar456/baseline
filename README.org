@@ -1,0 +1,50 @@
+#+TITLE: Baseline CMake Project
+
+* Introduction
+
+This is a baseline project that can be used to test and benchmark ideas that you
+may have. It makes use of the Google Test framework for testing and Google
+Benchmarks for performance testing.
+
+* Setup
+
+** Modify CMakeLists
+
+The CMakeLists file will need to be modified to compile your source code. There
+are several TODOs that will need to be modified to change the files that need to
+be built.
+
+** Clone gtest and google benchmarks
+
+The google test and google benchmark projects will need to be cloned into the
+external folder
+
+#+BEGIN_SRC sh
+git clone ssh://git@github.com/google/googletest external/googletest
+git clone ssh://git@github.com/google/benchmark external/benchmark
+#+END_SRC
+
+** Modify the Test Files
+
+The `test.cpp` file contains a baseline test which will need to be modified to
+test for your use case
+
+** Modify the benchmark files
+
+The `benchmark.cpp` file contains the baseline benchmark file which needs to
+be modified to test your benchmarks
+
+** Modify this README file
+
+Modify this readme to show what you are trying to do with this project
+
+* Build
+
+Make and run the cmake project.
+
+#+BEGIN_SRC sh
+mkdir build
+cd build
+cmake ..
+make
+#+END_SRC
