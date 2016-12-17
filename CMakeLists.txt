@@ -11,6 +11,8 @@ if(POLICY CMP0037)
   cmake_policy(SET CMP0037 NEW)
 endif()
 
+add_definitions(-Wall -Werror)
+
 # TODO: Set test source names and executables
 if(EXISTS ${CMAKE_SOURCE_DIR}/external/googletest)
   add_subdirectory(external/googletest)
@@ -19,7 +21,7 @@ if(EXISTS ${CMAKE_SOURCE_DIR}/external/googletest)
   set(TEST_EXECUTABLE_NAME BaselineUnitTest)
 
   add_executable(${TEST_EXECUTABLE_NAME} ${TEST_SOURCE_NAMES})
-  target_link_libraries(${TEST_EXECUTABLE_NAME} PRIVATE gmock_main)
+  target_link_libraries(${TEST_EXECUTABLE_NAME} PRIVATE gmock_main rt)
 
   set_property(TARGET ${TEST_EXECUTABLE_NAME} PROPERTY CXX_STANDARD 11)
   set_property(TARGET ${TEST_EXECUTABLE_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
@@ -37,7 +39,7 @@ if(EXISTS ${CMAKE_SOURCE_DIR}/external/benchmark)
   set(BENCHMARK_SOURCE_NAMES source/benchmark.cpp)             #Modify file name
   set(BENCHMARK_EXECUTABLE_NAME BaselineBenchmark)  #Modify executable name
   add_executable(${BENCHMARK_EXECUTABLE_NAME} ${BENCHMARK_SOURCE_NAMES})
-  target_link_libraries(${BENCHMARK_EXECUTABLE_NAME} PRIVATE benchmark)
+  target_link_libraries(${BENCHMARK_EXECUTABLE_NAME} PRIVATE benchmark rt)
   include_directories(${benchmark_SOURCE_DIR}/include)
 
   set_property(TARGET ${BENCHMARK_EXECUTABLE_NAME} PROPERTY CXX_STANDARD 11)
@@ -51,4 +53,3 @@ add_executable(myapp source/main.cpp)
 set_property(TARGET myapp PROPERTY CXX_STANDARD 11)
 set_property(TARGET myapp PROPERTY CXX_STANDARD_REQUIRED ON)
 
-add_definitions(-Wall -Werror)
